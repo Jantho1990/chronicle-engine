@@ -18,7 +18,7 @@
         content: '',
         contentHtml: '',
         id: 0,
-        linkText: '[link]'
+        linkText: '<button>Click Me</button>'
       }
     },
     watch: {
