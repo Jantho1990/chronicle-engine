@@ -2,16 +2,19 @@
   <div id="app">
     <img src="./assets/logo.png">
     <HelloWorld/>
+    <PageEditor/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import PageEditor from './components/editor/PageEditor'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    PageEditor
   }
 }
 </script>
