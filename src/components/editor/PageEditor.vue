@@ -43,6 +43,7 @@
         } else {
           myField.value += myValue
         }
+        this.content = this.$refs.tx.value
         myField.focus()
       }
     }
