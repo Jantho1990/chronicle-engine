@@ -1,20 +1,20 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld/>
     <PageEditor/>
+    <PageEditorNew/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 import PageEditor from './components/editor/PageEditor'
+import PageEditorNew from './components/editor/PageEditorNew'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    PageEditor
+    PageEditor,
+    PageEditorNew
   }
 }
 </script>
