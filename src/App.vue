@@ -3,18 +3,21 @@
     <img src="./assets/logo.png">
     <PageEditor/>
     <PageEditorNew/>
+    <PageViewer/>
   </div>
 </template>
 
 <script>
 import PageEditor from './components/editor/PageEditor'
 import PageEditorNew from './components/editor/PageEditorNew'
+import PageViewer from './components/viewer/PageViewer'
 
 export default {
   name: 'app',
   components: {
     PageEditor,
-    PageEditorNew
+    PageEditorNew,
+    PageViewer
   }
 }
 </script>
