@@ -4,20 +4,20 @@
     <h1>Chronicle</h1>
     <h2>A Text-Adventure Engine</h2>
     <div class="container">
-      <PageEditorNew/>
+      <PageEditor/>
       <PageViewer/>
     </div>
   </div>
 </template>
 
 <script>
-import PageEditorNew from './components/editor/PageEditorNew'
+import PageEditor from './components/editor/PageEditor'
 import PageViewer from './components/viewer/PageViewer'
 
 export default {
   name: 'app',
   components: {
-    PageEditorNew,
+    PageEditor,
     PageViewer
   }
 }
