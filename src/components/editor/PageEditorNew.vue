@@ -13,8 +13,8 @@
 
 <style scoped>
   .page-editor-component {
-    max-width: 50%;
-    margin: 0 auto;
+    margin: 0 2rem;
+    flex-grow: 1;
   }
 
   .page-editor-wrapper {
