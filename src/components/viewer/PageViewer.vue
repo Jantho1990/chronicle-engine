@@ -30,8 +30,9 @@
 </style>
 
 <script>
-  import EventBus from '../../components/events/EventBus'
+  import { EventBus } from '../../components/events/EventBus'
   import Page from '../../components/models/Page'
+
 
   export default {
     components: {
@@ -40,12 +41,22 @@
     },
     data () {
       return {
-        'dummy': new Page({id: null, name: 'dummy', content: 'dummy content'})
+        'dummy': new Page({id: null, name: 'dummy', content: 'dummy content'}),
+        'model': new Page({id: null, name: 'temp', content: 'temp'})
       }
     },
     computed: {
       viewerContent: function () {
-        return this.dummy.content
+        console.log('marb', this.model.content)
+        return this.model.content || ''
+      }
+    },
+    created: function () {
+      EventBus.$on('pageUpdate', this.updateViewer)
+    },
+    methods: {
+      updateViewer: function (model) {
+        this.model = model
       }
     }
   }
