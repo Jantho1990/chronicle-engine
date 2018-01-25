@@ -4,7 +4,7 @@
     <h1>Chronicle</h1>
     <h2>A Text-Adventure Engine</h2>
     <div class="container">
-      <PageEditor/>
+      <PageEditorSimple/>
       <PageViewer/>
     </div>
   </div>
@@ -12,12 +12,14 @@
 
 <script>
 import PageEditor from './components/editor/PageEditor'
+import PageEditorSimple from './components/editor/PageEditorSimple'
 import PageViewer from './components/viewer/PageViewer'
 
 export default {
   name: 'app',
   components: {
     PageEditor,
+    PageEditorSimple,
     PageViewer
   }
 }

@@ -4,7 +4,7 @@
       <h3>Page Viewer</h3>
       <div class="page-viewer-wrapper">
         <div class="page-viewer">
-          {{ this.viewerContent }}
+          <span v-html="this.viewerContent"></span>
         </div>
       </div>
     </div>
