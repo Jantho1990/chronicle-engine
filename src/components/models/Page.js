@@ -1,4 +1,12 @@
-import {Model, Collection} from 'vue-mc';
+import {Model} from 'vue-mc'
+import {
+  // boolean,
+  equal,
+  integer,
+  min,
+  required,
+  string
+} from 'vue-mc/validation'
 
 class Page extends Model {
   defaults () {

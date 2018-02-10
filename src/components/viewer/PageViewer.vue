@@ -33,7 +33,6 @@
   import { EventBus } from '../../components/events/EventBus'
   import Page from '../../components/models/Page'
 
-
   export default {
     components: {
       EventBus,

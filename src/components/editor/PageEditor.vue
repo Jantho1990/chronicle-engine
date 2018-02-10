@@ -65,18 +65,17 @@
         console.log(sel)
 //        sel.addRange(range)
         sel.removeAllRanges()
-          sel.addRange(range)
+        sel.addRange(range)
 //        el.setSelectionRange(el.innerText.length, el.innerText.length)
       },
       insertAtCursor: function (myField, myValue) {
-        //IE support
+        // IE support
         if (document.selection) {
           myField.focus()
           let sel = document.selection.createRange()
           sel.text = myValue
-        }
-        //MOZILLA and others
-        else if (myField.selectionStart || myField.selectionStart == '0') {
+        } else if (myField.selectionStart || myField.selectionStart === '0') {
+          // MOZILLA and others
           let startPos = myField.selectionStart
           let endPos = myField.selectionEnd
           myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos, myField.value.length)
