@@ -51,17 +51,17 @@
       parseLinks: function (content) {
         let parse1 = content.split('[link.')
         parse1.forEach((parse) => {
-          if(parse.indexOf(']') === -1){return}
+          if (parse.indexOf(']') === -1) { return }
           let parse2 = parse.split(']')[0]
           let parse3 = parse2.split('.')
-          if(parse3.length === 2){
+          if (parse3.length === 2) {
             let link = {
               raw: `[link.${parse2}]`,
               name: parse3[0],
               target: parse3[1]
             }
             let _link = this.links.find((ar) => ar.raw === link.raw) || null
-            if(_link === null){
+            if (_link === null) {
               this.links.push(link)
             }
           } else {
@@ -72,7 +72,7 @@
       pruneLinks: function (content) {
         let arr = this.links
         this.links.forEach((link, i) => {
-          if(content.indexOf(link.raw) === -1){
+          if (content.indexOf(link.raw) === -1) {
             arr.splice(i, 1)
           }
         })
