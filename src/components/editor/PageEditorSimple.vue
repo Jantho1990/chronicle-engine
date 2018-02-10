@@ -49,19 +49,20 @@
     },
     methods: {
       parseLinks: function (content) {
-        let parse1 = content.split('[link.')
-        parse1.forEach((parse) => {
-          if (parse.indexOf(']') === -1) { return }
-          let parse2 = parse.split(']')[0]
-          let parse3 = parse2.split('.')
-          if (parse3.length === 2) {
+        let splitOpen = content.split('[link.')
+        splitOpen.forEach((str) => {
+          if (str.indexOf(']') === -1) { return }
+          let parsed = str.split(']')[0]
+          let data = parsed.split('.')
+          if (data.length === 2) {
             let link = {
-              raw: `[link.${parse2}]`,
-              name: parse3[0],
-              target: parse3[1]
+              raw: `[link.${parsed}]`,
+              parsed,
+              name: data[0],
+              target: data[1]
             }
-            let _link = this.links.find((ar) => ar.raw === link.raw) || null
-            if (_link === null) {
+            let existingLink = this.links.find((_link) => _link.raw === link.raw) || false
+            if (!existingLink) {
               this.links.push(link)
             }
           } else {
@@ -70,13 +71,13 @@
         })
       },
       pruneLinks: function (content) {
-        let arr = this.links
+        let newLinks = this.links
         this.links.forEach((link, i) => {
           if (content.indexOf(link.raw) === -1) {
-            arr.splice(i, 1)
+            newLinks.splice(i, 1)
           }
         })
-        this.links = arr
+        this.links = newLinks
       }
     },
     watch: {
