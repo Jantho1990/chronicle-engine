@@ -29,18 +29,21 @@
 
 <script>
   import { EventBus } from '../../components/events/EventBus'
+  import Link from '../../components/models/Link'
   import Page from '../../components/models/Page'
 
   export default {
     components: {
       EventBus,
+      Link,
       Page
     },
     data () {
       return {
         content: '',
         model: null,
-        links: []
+        links: [],
+        linkId: 1
       }
     },
     created: function () {
@@ -55,15 +58,16 @@
           let parsed = str.split(']')[0]
           let data = parsed.split('.')
           if (data.length === 2) {
-            let link = {
-              raw: `[link.${parsed}]`,
-              parsed,
-              name: data[0],
-              target: data[1]
-            }
-            let existingLink = this.links.find((_link) => _link.raw === link.raw) || false
+            let raw = `[link.${parsed}]`
+            let existingLink = this.links.find((_link) => _link.raw === raw) || false
             if (!existingLink) {
-              this.links.push(link)
+              this.links.push(new Link({
+                id: this.linkId++,
+                raw,
+                parsed,
+                name: data[0],
+                target: data[1]
+              }))
             }
           } else {
             console.log('ERROR: Invalid Link')
@@ -74,6 +78,9 @@
         let newLinks = this.links
         this.links.forEach((link, i) => {
           if (content.indexOf(link.raw) === -1) {
+            // Check for references to link in other pages
+            // Offer to replace references with another link
+            // If yes, replace references, if no, remove references
             newLinks.splice(i, 1)
           }
         })
