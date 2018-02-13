@@ -40,23 +40,26 @@
     },
     data () {
       return {
-        'dummy': new Page({id: null, name: 'dummy', content: 'dummy content'}),
-        'model': new Page({id: null, name: 'temp', content: 'temp'})
+        'dummy': new Page({id: null, name: 'dummy', content: 'dummy content'})
       }
     },
     computed: {
       viewerContent: function () {
         console.log('marb', this.model.content)
         return this.model.content || ''
+      },
+      model () {
+        return this.$store.getters.page(this.pageId) || null
       }
     },
     created: function () {
-      EventBus.$on('pageUpdate', this.updateViewer)
+      // EventBus.$on('updatePage', this.updateViewer)
     },
     methods: {
-      updateViewer: function (model) {
-        this.model = model
+      updateViewer: function (id) {
+        // this.model = model
       }
-    }
+    },
+    props: ['pageId']
   }
 </script>

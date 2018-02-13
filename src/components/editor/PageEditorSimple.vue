@@ -38,16 +38,24 @@
       Link,
       Page
     },
+    computed: {
+      model () {
+        return this.$store.getters.page(this.pageId) || null
+      }
+    },
     data () {
       return {
         content: '',
-        model: null,
         links: [],
         linkId: 1
       }
     },
     created: function () {
-      this.model = new Page({id: 0, name: 'test', content: 'Page Model Test Content'}) || {content: 'fail'}
+      this.model = new Page({
+        id: 0,
+        name: 'test',
+        content: 'Page Model Test Content'
+      }) || {content: 'fail'}
       EventBus.$emit('pageUpdate', this.model)
     },
     methods: {
@@ -87,13 +95,16 @@
         this.links = newLinks
       }
     },
+    props: [
+      'pageId'
+    ],
     watch: {
       content: function (value) {
         this.model.content = value.replace(/(?:\r\n|\r|\n)/g, '<br />')
         console.log('Value is', value)
         this.pruneLinks(value)
         this.parseLinks(value)
-        EventBus.$emit('pageUpdate', this.model)
+        EventBus.$emit('updatePage', this.model)
       }
     }
   }
