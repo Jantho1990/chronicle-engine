@@ -33,6 +33,8 @@
   import { EventBus } from '../../components/events/EventBus'
   import Page from '../../components/models/Page'
 
+  import { mapGetters } from 'vuex'
+
   export default {
     components: {
       EventBus,
@@ -48,16 +50,20 @@
         console.log('marb', this.model.content)
         return this.model.content || ''
       },
+      ...mapGetters({
+        pages: 'pages'
+      }),
       model () {
-        return this.$store.getters.page(this.pageId) || null
+        return this.$store.getters.pages.filter(page => page.id === this.pageId)
       }
     },
     created: function () {
-      // EventBus.$on('updatePage', this.updateViewer)
+      EventBus.$on('updatePage', this.updateViewer)
     },
     methods: {
       updateViewer: function (id) {
         // this.model = model
+        this.model = this.$store.getters.pages.filter(page => page.id === id)
       }
     },
     props: ['pageId']

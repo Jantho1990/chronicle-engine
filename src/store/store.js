@@ -16,15 +16,15 @@ export const store = new Vuex.Store({
     ]
   },
   getters: {
-    page (state, id) {
-      return state.pages.filter(page => page.id === id)
+    pages (state) {
+      return state.pages
     }
   },
   mutations: {
     page (state, page) {
       let pageId = state.pages.findIndex(_page => _page.id === page.id)
-      if (pageId === null) {
-        page.id = pageId++
+      if (pageId === -1) {
+        page.id = state.pageId++
         state.pages.push(page)
       } else {
         state.pages[pageId] = page

@@ -4,8 +4,8 @@
     <h1>Chronicle</h1>
     <h2>A Text-Adventure Engine</h2>
     <div class="container">
-      <PageEditorSimple/>
-      <PageViewer/>
+      <PageEditorSimple :pageId="0"/>
+      <PageViewer :pageId="0"/>
     </div>
   </div>
 </template>

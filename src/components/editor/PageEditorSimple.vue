@@ -32,6 +32,8 @@
   import Link from '../../components/models/Link'
   import Page from '../../components/models/Page'
 
+  import { mapGetters } from 'vuex'
+
   export default {
     components: {
       EventBus,
@@ -39,8 +41,11 @@
       Page
     },
     computed: {
+      ...mapGetters({
+        pages: 'pages'
+      }),
       model () {
-        return this.$store.getters.page(this.pageId) || null
+        return this.$store.getters.pages.filter(page => page.id === this.pageId) || null
       }
     },
     data () {
@@ -51,7 +56,7 @@
       }
     },
     created: function () {
-      this.model = new Page({
+      this.page = new Page({
         id: 0,
         name: 'test',
         content: 'Page Model Test Content'
@@ -100,11 +105,12 @@
     ],
     watch: {
       content: function (value) {
-        this.model.content = value.replace(/(?:\r\n|\r|\n)/g, '<br />')
+        this.page.content = value.replace(/(?:\r\n|\r|\n)/g, '<br />')
         console.log('Value is', value)
         this.pruneLinks(value)
         this.parseLinks(value)
-        EventBus.$emit('updatePage', this.model)
+        this.$store.commit('page', this.page)
+        EventBus.$emit('updatePage', this.model.id)
       }
     }
   }
