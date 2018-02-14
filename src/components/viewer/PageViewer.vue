@@ -53,8 +53,13 @@
       ...mapGetters({
         pages: 'pages'
       }),
-      model () {
-        return this.$store.getters.pages.filter(page => page.id === this.pageId)
+      model: {
+        get: function () {
+          return this.$store.getters.pages.filter(page => page.id === this.pageId)
+        },
+        set: function (page) {
+          return this.$store.commit('page', this.page)
+        }
       }
     },
     created: function () {

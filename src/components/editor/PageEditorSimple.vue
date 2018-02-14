@@ -44,8 +44,13 @@
       ...mapGetters({
         pages: 'pages'
       }),
-      model () {
-        return this.$store.getters.pages.filter(page => page.id === this.pageId) || null
+      model: {
+        get: function () {
+          return this.$store.getters.pages.filter(page => page.id === this.pageId) || null
+        },
+        set: function (page) {
+          return this.$store.commit('page', this.page)
+        }
       }
     },
     data () {
