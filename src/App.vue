@@ -4,23 +4,22 @@
     <h1>Chronicle</h1>
     <h2>A Text-Adventure Engine</h2>
     <div class="container">
-      <PageEditorSimple :pageId="0"/>
-      <PageViewer :pageId="0"/>
+      <Nav/>
+      <Content/>
+      
     </div>
   </div>
 </template>
 
 <script>
-import PageEditor from './components/editor/PageEditor'
-import PageEditorSimple from './components/editor/PageEditorSimple'
-import PageViewer from './components/viewer/PageViewer'
+import Nav from './components/Nav'
+import Content from './components/Content'
 
 export default {
   name: 'app',
   components: {
-    PageEditor,
-    PageEditorSimple,
-    PageViewer
+    Nav,
+    Content
   }
 }
 </script>
